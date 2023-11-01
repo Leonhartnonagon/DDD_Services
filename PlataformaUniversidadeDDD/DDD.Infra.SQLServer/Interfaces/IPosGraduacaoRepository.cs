@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace DDD.Infra.SQLServer.Interfaces
 {
-    public interface IPosGradInterface
+    public interface IPosGraduacaoRepository
     {
         public PosGraduacao InsertPosGraduacao(int idProjeto, int idPesquisador);
-        public PosGraduacao GetPosGraduacao(int idProjeto, int idPesquisador);
+        public List<PosGraduacao> GetPosGraduacoes();
+        public PosGraduacao GetPosGraduacaoById(int id);
     }
 }
