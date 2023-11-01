@@ -1,4 +1,5 @@
 using DDD.Domain.PicContext;
+using DDD.Domain.PosGraduacaoContext;
 using DDD.Domain.SecretariaContext;
 using DDD.Domain.UserManagementContext;
 using Microsoft.EntityFrameworkCore;
@@ -28,9 +29,11 @@ namespace DDD.Infra.SQLServer
             modelBuilder.Entity<User>().UseTpcMappingStrategy();
             modelBuilder.Entity<Aluno>().ToTable("Aluno");
             modelBuilder.Entity<Pesquisador>().ToTable("Pesquisador");
+            modelBuilder.Entity<PosGraduacao>().ToTable("pos_graducacao");
             //https://learn.microsoft.com/pt-br/ef/core/modeling/inheritance
         }
 
+        public DbSet<PosGraduacao> PosGraduacoes { get; set; }
         public DbSet<BoletimPersistence> Boletins { get; set; }
         public DbSet<Aluno> Alunos { get; set; }
         public DbSet<Disciplina> Disciplinas { get; set; }
@@ -38,5 +41,6 @@ namespace DDD.Infra.SQLServer
         public DbSet<User> Users { get; set; }
         public DbSet<Pesquisador> Pesquisadores { get; set; }
         public DbSet<Projeto> Projetos { get; set; }
+
     }
 }

@@ -1,3 +1,4 @@
+using DDD.Domain.PicContext.Enums;
 using DDD.Domain.UserManagementContext;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ namespace DDD.Domain.PicContext
 {
     public  class Pesquisador : User
     {
-        public string Titulacao { get; set; }
+        public TitulacaoPesquisador Titulacao { get; set; }
         public List<Projeto> Projetos { get; set; }
     }
 }
