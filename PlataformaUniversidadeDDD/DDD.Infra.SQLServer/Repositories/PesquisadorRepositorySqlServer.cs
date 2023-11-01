@@ -1,11 +1,5 @@
 ﻿using DDD.Domain.PicContext;
-using DDD.Domain.SecretariaContext;
 using DDD.Infra.SQLServer.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DDD.Infra.SQLServer.Repositories
 {
@@ -26,6 +20,20 @@ namespace DDD.Infra.SQLServer.Repositories
         Pesquisador IPesquisadorRepository.GetPesquisadorById(int id)
         {
             return _context.Pesquisadores.Find(id);
+        }
+
+        public void InsertPesquisador(Pesquisador pesquisador)
+        {
+            try
+            {
+                _context.Pesquisadores.Add(pesquisador);
+                _context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                //log exception
+
+            }
         }
     }
 }
