@@ -16,6 +16,7 @@ builder.Services.AddScoped<IDisciplinaRepository, DisciplinaRepositorySqlServer>
 builder.Services.AddScoped<IMatriculaRepository, MatriculaRepositorySqlServer>();
 builder.Services.AddScoped<IPesquisadorRepository, PesquisadorRepositorySqlServer>();
 builder.Services.AddScoped<IPosGraduacaoRepository, PosGraduacaoRepositorySqlServer>();
+builder.Services.AddScoped<IProjetoRepository, ProjetoRepositorySqlServer>();
 builder.Services.AddScoped<BoletimService, BoletimService>();
 builder.Services.AddScoped<ApplicationServiceBoletim, ApplicationServiceBoletim>();
 builder.Services.AddScoped<ProjetoService, ProjetoService>();

@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace DDD.Infra.SQLServer.Interfaces
 {
-    public interface IProjetoIRepository
+    public interface IProjetoRepository
     {
-        public void InsertProjeto(Projeto projeto);
+        public Projeto InsertProjeto(Projeto projeto);
         public List<Projeto> GetProjeto();
         public Projeto GetProjetoById(int id);
        

@@ -3,7 +3,7 @@ using DDD.Infra.SQLServer.Interfaces;
 
 namespace DDD.Infra.SQLServer.Repositories
 {
-    public class ProjetoRepositorySqlServer : IProjetoIRepository
+    public class ProjetoRepositorySqlServer : IProjetoRepository
     {
         private readonly SqlContext _context;
 
@@ -22,7 +22,7 @@ namespace DDD.Infra.SQLServer.Repositories
             return _context.Projetos.Find(id);
         }
 
-        public void InsertProjeto(Projeto projeto)
+        public Projeto InsertProjeto(Projeto projeto)
         {
             try
             {
@@ -34,6 +34,8 @@ namespace DDD.Infra.SQLServer.Repositories
                 //log exception
 
             }
+
+            return projeto;
         }
     }
 }

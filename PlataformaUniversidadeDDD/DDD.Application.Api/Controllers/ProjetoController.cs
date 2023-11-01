@@ -1,4 +1,5 @@
-﻿using DDD.Domain.PicContext;
+﻿using DDD.Application.Service;
+using DDD.Domain.PicContext;
 using DDD.Domain.SecretariaContext;
 using DDD.Infra.SQLServer.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -9,9 +10,10 @@ namespace DDD.Application.Api.Controllers
     [ApiController]
     public class ProjetoController : ControllerBase
     {
-        readonly IProjetoIRepository _projetoRepository;
+        readonly IProjetoRepository _projetoRepository;
+        readonly ApplicationServiceProjeto _projetoService;
 
-        public ProjetoController(IProjetoIRepository projetoIRepository)
+        public ProjetoController(IProjetoRepository projetoIRepository)
         {
             _projetoRepository = projetoIRepository;
         }
@@ -32,16 +34,13 @@ namespace DDD.Application.Api.Controllers
 
         //Insert
         [HttpPost]
-        [ProducesResponseType(StatusCodes.Status201Created)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public ActionResult<Projeto> InsertProjeto(Projeto projeto) 
+        [Route("gerarBoletim")]
+        
+        public void CadastrarProjeto(Projeto projeto, int idPesquisador) 
         {
-            if (projeto.AnosDuracao < 1)
-            {
-                return BadRequest("O projeto deve ter mais de 1 ano de duração.");
-            }
-            _projetoRepository.InsertProjeto(projeto);
-            return CreatedAtAction(nameof(GetById), new { id = projeto.ProjetoId }, projeto);
+            
+            _projetoService.CadastrarProjeto(projeto, idPesquisador);
+            
         }
     }
 }
