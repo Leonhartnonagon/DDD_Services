@@ -10,6 +10,8 @@ namespace DDD.Infra.SQLServer.Interfaces
     public interface IProjetoIRepository
     {
         public Projeto InsertProjeto(Projeto projeto);
-        public Projeto GetProjeto(Projeto projeto);
+        public Projeto GetProjeto();
+        public Projeto GetProjetoById(int id);
+       
     }
 }

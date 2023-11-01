@@ -10,5 +10,6 @@ namespace DDD.Infra.SQLServer.Interfaces
     public interface IPosGradInterface
     {
         public PosGraduacao InsertPosGraduacao(int idProjeto, int idPesquisador);
+        public PosGraduacao GetPosGraduacao(int idProjeto, int idPesquisador);
     }
 }
