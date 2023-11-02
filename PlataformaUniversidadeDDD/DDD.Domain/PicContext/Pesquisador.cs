@@ -11,6 +11,6 @@ namespace DDD.Domain.PicContext
     public  class Pesquisador : User
     {
         public TitulacaoPesquisador Titulacao { get; set; }
-        public List<Projeto> Projetos { get; set; }
+        public List<Projeto>? Projetos { get; set; }
     }
 }

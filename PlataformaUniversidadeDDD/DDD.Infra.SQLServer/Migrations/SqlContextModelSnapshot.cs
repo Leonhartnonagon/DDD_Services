@@ -35,9 +35,6 @@ namespace DDD.Infra.SQLServer.Migrations
                     b.Property<int>("AnosDuracao")
                         .HasColumnType("int");
 
-                    b.Property<int?>("PesquisadorUserId")
-                        .HasColumnType("int");
-
                     b.Property<string>("ProjetoDescription")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -48,9 +45,25 @@ namespace DDD.Infra.SQLServer.Migrations
 
                     b.HasKey("ProjetoId");
 
-                    b.HasIndex("PesquisadorUserId");
-
                     b.ToTable("Projetos");
+                });
+
+            modelBuilder.Entity("DDD.Domain.PosGraduacaoContext.PosGraduacao", b =>
+                {
+                    b.Property<int>("PesquisadorId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProjetoId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PosGradId")
+                        .HasColumnType("int");
+
+                    b.HasKey("PesquisadorId", "ProjetoId");
+
+                    b.HasIndex("ProjetoId");
+
+                    b.ToTable("pos_graducacao", (string)null);
                 });
 
             modelBuilder.Entity("DDD.Domain.SecretariaContext.BoletimPersistence", b =>
@@ -175,9 +188,8 @@ namespace DDD.Infra.SQLServer.Migrations
                 {
                     b.HasBaseType("DDD.Domain.UserManagementContext.User");
 
-                    b.Property<string>("Titulacao")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Titulacao")
+                        .HasColumnType("int");
 
                     b.ToTable("Pesquisador", (string)null);
                 });
@@ -189,11 +201,23 @@ namespace DDD.Infra.SQLServer.Migrations
                     b.ToTable("Aluno", (string)null);
                 });
 
-            modelBuilder.Entity("DDD.Domain.PicContext.Projeto", b =>
+            modelBuilder.Entity("DDD.Domain.PosGraduacaoContext.PosGraduacao", b =>
                 {
-                    b.HasOne("DDD.Domain.PicContext.Pesquisador", null)
-                        .WithMany("Projetos")
-                        .HasForeignKey("PesquisadorUserId");
+                    b.HasOne("DDD.Domain.PicContext.Pesquisador", "Pesquisador")
+                        .WithMany()
+                        .HasForeignKey("PesquisadorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DDD.Domain.PicContext.Projeto", "Projeto")
+                        .WithMany()
+                        .HasForeignKey("ProjetoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Pesquisador");
+
+                    b.Navigation("Projeto");
                 });
 
             modelBuilder.Entity("DDD.Domain.SecretariaContext.BoletimPersistence", b =>
@@ -224,11 +248,6 @@ namespace DDD.Infra.SQLServer.Migrations
                     b.Navigation("Aluno");
 
                     b.Navigation("Disciplina");
-                });
-
-            modelBuilder.Entity("DDD.Domain.PicContext.Pesquisador", b =>
-                {
-                    b.Navigation("Projetos");
                 });
 #pragma warning restore 612, 618
         }

@@ -34,7 +34,7 @@ namespace DDD.Application.Api.Controllers
 
         //Insert
         [HttpPost]
-        [Route("gerarBoletim")]
+        [Route("CadastrarProjeto")]
         
         public void CadastrarProjeto(Projeto projeto, int idPesquisador) 
         {
