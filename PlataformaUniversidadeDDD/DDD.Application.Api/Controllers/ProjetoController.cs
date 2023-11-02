@@ -1,6 +1,7 @@
 ﻿using DDD.Application.Service;
 using DDD.Domain.PicContext;
 using DDD.Domain.SecretariaContext;
+using DDD.Domain.Service;
 using DDD.Infra.SQLServer.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,9 +14,10 @@ namespace DDD.Application.Api.Controllers
         readonly IProjetoRepository _projetoRepository;
         readonly ApplicationServiceProjeto _projetoService;
 
-        public ProjetoController(IProjetoRepository projetoIRepository)
+        public ProjetoController(IProjetoRepository projetoIRepository, ApplicationServiceProjeto applicationServiceProjeto)
         {
             _projetoRepository = projetoIRepository;
+            _projetoService = applicationServiceProjeto;
         }
 
         // GET
