@@ -19,3 +19,5 @@ namespace DDD.Domain.PosGraduacaoContext
         public Projeto Projeto { get; set; }
     }
 }
+
+//esse aqui
